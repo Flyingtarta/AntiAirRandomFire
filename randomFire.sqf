@@ -4,11 +4,11 @@ if (!isServer) exitWith {};
 
 //_aa if its in the init of the AntiAir just put THIS
 //_condition : condition to start script (ej. Radar destroyed)
-//_spray: gives more spray (moves target) ej. 10/20
+//_spread: gives more spray (moves target) ej. 10/20
 //_wait: time between shots, its random generated but this number is the most probable. it goes from 1 to 2 times this value.
 waituntil {time > 2};
 
-params ["_aa","_condition","_spray","_wait"];
+params ["_aa","_condition","_spread","_wait"];
 
 //the only crew on the AA shold be the gunner to make it work, so it delete the commander
 if ( count(crew _aa) > 1) then {
@@ -40,7 +40,7 @@ while {(alive _gnr)} do {
   _aa setVehicleAmmo 1;
   //new target to give spray
   _randomtrgpos = [[[_vecpos, 10]],[]] call BIS_fnc_randomPos;
-  _randomposfinal = [(_randomtrgpos select 0) + _spray, (_randomtrgpos select 1) + _spray, (_randomtrgpos select 2) + 30];
+  _randomposfinal = [(_randomtrgpos select 0) + _spread, (_randomtrgpos select 1) +  _spread, (_randomtrgpos select 2) + 30];
   _trg setpos _randomposfinal;
   _gnr dowatch _trg;
   //restart target
